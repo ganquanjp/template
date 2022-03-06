@@ -69,7 +69,8 @@
         </javaClientGenerator>
         <!-- テーブル名-->
         <table
-        	tableName="<tableName>"
+        	tableName="%"
+        	schema="${spring.datasource.schema}"
         	enableCountByExample="false"
         	enableUpdateByExample="false"
         	enableDeleteByExample="false"
