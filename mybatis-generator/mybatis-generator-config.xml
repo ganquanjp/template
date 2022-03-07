@@ -3,9 +3,10 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <properties resource="mybatis-generator.properties"/>
+    <!--<properties resource="C:\ganquan\workspace\hepinhui\mybatis-generator\mybatis-generator.properties"/>-->
+    <!--<properties url="file:///C:\ganquan\workspace\hepinhui\mybatis-generator\mybatis-generator.properties"/>-->
     <!-- データソースドライバ-->
-    <classPathEntry  location="${mybatis.postgresql.jdbc.path}"/>
+    <classPathEntry location="postgresql-42.3.3.jar"/>
     <context id="HepinhuiTables" targetRuntime="MyBatis3" defaultModelType="flat">
         <!-- 自动识别数据库关键字，默认为 false，一般保留默认值，遇到数据库关键字（Java关键字）时，
             按照 table 元素中 columnOverride 属性的配置进行覆盖；
@@ -36,10 +37,10 @@
         </commentGenerator>
         <!--DataBase URL、User、Password -->
         <jdbcConnection
-        	driverClass="${spring.datasource.driver-class-name}"
-        	connectionURL="${spring.datasource.url}"
-        	userId="${spring.datasource.username}"
-        	password="${spring.datasource.password}">
+        	driverClass="org.postgresql.Driver"
+        	connectionURL="jdbc:postgresql://<host>:<port>/<DBName>"
+        	userId="<user>"
+        	password="<user>">
         </jdbcConnection>
         <javaTypeResolver>
             <!-- 是否强制使用 BigDecimal；
@@ -50,27 +51,27 @@
         </javaTypeResolver>
         <!-- モジュールファイル場所 -->
         <javaModelGenerator 
-            targetPackage="${mybatis.javaModelGenerator.targetpackage}" 
-            targetProject="${mybatis.javaModelGenerator.targetProject}">
+            targetPackage="<package>.repository" 
+            targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- マッピングファイル場所 -->
         <sqlMapGenerator 
-            targetPackage="${mybatis.sqlMapGenerator.targetpackage}" 
-            targetProject="${mybatis.sqlMapGenerator.targetProject}">
+            targetPackage="<package>.repository.mapper" 
+            targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- DAOファイル場所 -->
         <javaClientGenerator type="XMLMAPPER" 
-            targetPackage="${mybatis.javaClientGenerator.targetpackage}" 
-            targetProject="${mybatis.javaClientGenerator.targetProject}">
+            targetPackage="<package>.repository.mapper" 
+            targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- テーブル名-->
         <table
         	tableName="%"
-        	schema="${spring.datasource.schema}"
+        	schema="<schema>"
         	enableCountByExample="false"
         	enableUpdateByExample="false"
         	enableDeleteByExample="false"
